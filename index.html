@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Saya</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    /* Header/Menu */
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header nav {
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Slider Gambar */
+    .slider {
+      width: 100%;
+      max-height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Section */
+    section {
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      margin-bottom: 15px;
+      color: #0077cc;
+    }
+
+    /* Video */
+    .video-container {
+      text-align: center;
+    }
+    .video-container video {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+
+    /* Postingan & komentar */
+    .post {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .comments {
+      margin-top: 15px;
+    }
+    .comments input, .comments button {
+      padding: 10px;
+      margin-top: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header/Menu -->
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#profil">Profil</a>
+      <a href="#activity">Activity</a>
+    </nav>
+  </header>
+
+  <!-- Slider Gambar -->
+  <div class="slider" id="home">
+    <div class="slides">
+      <img src="https://via.placeholder.com/1200x400?text=Gambar+1" alt="Gambar 1">
+      <img src="https://via.placeholder.com/1200x400?text=Gambar+2" alt="Gambar 2">
+      <img src="https://via.placeholder.com/1200x400?text=Gambar+3" alt="Gambar 3">
+    </div>
+  </div>
+
+  <!-- Video -->
+  <section class="video-container" id="profil">
+    <h2>Video</h2>
+    <video controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+  </section>
+
+  <!-- Lyric, Photos, Reflection, News -->
+  <section id="activity">
+    <h2>Lyric</h2>
+    <p>Contoh lyric atau teks di sini...</p>
+
+    <h2>Photos</h2>
+    <p>Contoh galeri atau foto di sini...</p>
+
+    <h2>Reflection</h2>
+    <p>Contoh renungan singkat...</p>
+
+    <h2>News</h2>
+    <p>Contoh berita terbaru...</p>
+  </section>
+
+  <!-- Postingan renungan singkat -->
+  <section>
+    <div class="post">
+      <h3>Renungan Singkat Hari Ini</h3>
+      <p>"Hidup ini singkat, jadi manfaatkan setiap waktu dengan baik dan jangan lupa bersyukur."</p>
+      
+      <!-- Kolom komentar -->
+      <div class="comments">
+        <input type="text" id="commentInput" placeholder="Tulis komentar...">
+        <button onclick="addComment()">Kirim</button>
+        <div id="commentList"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Slider otomatis
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    let index = 0;
+
+    function nextSlide() {
+      index++;
+      if(index >= images.length) index = 0;
+      slides.style.transform = `translateX(${-index * 100}%)`;
+    }
+    setInterval(nextSlide, 3000);
+
+    // Kolom komentar sederhana
+    function addComment() {
+      const input = document.getElementById('commentInput');
+      const comment = input.value.trim();
+      if(comment !== '') {
+        const div = document.createElement('div');
+        div.textContent = comment;
+        document.getElementById('commentList').appendChild(div);
+        input.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
